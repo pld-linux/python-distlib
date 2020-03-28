@@ -1,0 +1,11 @@
+Sequencer test is sensitive to dictionary ordering, only some python versions are covered in expected results
+--- distlib-0.3.0/tests/test_util.py.orig	2019-07-25 08:02:56.000000000 +0200
++++ distlib-0.3.0/tests/test_util.py	2020-03-28 18:59:49.550664006 +0100
+@@ -254,6 +254,7 @@
+         for actual, expected in zip(actuals, cases):
+             self.assertEqual(actual, expected)
+ 
++    @unittest.skipIf(sys.version_info >= (3, 8), 'Python 3.8+ ordering is not covered in test')
+     def test_sequencer_basic(self):
+         seq = Sequencer()
+ 
