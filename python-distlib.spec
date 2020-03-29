@@ -28,6 +28,7 @@ BuildRequires:	python3-modules >= 1:3.2
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
+BuildRequires:	sed >= 4.0
 BuildRequires:	unzip
 Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
@@ -59,6 +60,11 @@ wysokopoziomowe API ułatwiające pakietowanie.
 %setup -q -n distlib-%{version}
 %patch0 -p1
 %patch1 -p1
+
+%if "%{_host_cpu}" == "x32"
+# distlib.wheel doesn't distinguish x32 from x86_64
+%{__sed} -i -e 's/test_mount_extensions/disabled&/' tests/test_wheel.py
+%endif
 
 %build
 %if %{with python2}
