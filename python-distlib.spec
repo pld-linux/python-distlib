@@ -25,6 +25,10 @@ BuildRequires:	python-modules >= 1:2.7
 %endif
 %if %{with python3}
 BuildRequires:	python3-modules >= 1:3.2
+%if %{with tests}
+BuildConflicts:	python3-astroid < 2.3.3-2
+BuildConflicts:	python3-pylint < 2.4.4-2
+%endif
 %endif
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
