@@ -8,7 +8,7 @@ Summary:	Distribution utilities
 Summary(pl.UTF-8):	Narzędzia do dystrybuowania
 Name:		python-distlib
 Version:	0.3.0
-Release:	1
+Release:	2
 License:	PSF v2
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/distlib/
