@@ -7,15 +7,14 @@
 Summary:	Distribution utilities
 Summary(pl.UTF-8):	Narzędzia do dystrybuowania
 Name:		python-distlib
-Version:	0.3.0
-Release:	2
+Version:	0.3.4
+Release:	1
 License:	PSF v2
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/distlib/
 Source0:	https://files.pythonhosted.org/packages/source/d/distlib/distlib-%{version}.zip
-# Source0-md5:	f92e0f3ac43397da86a82781117e8351
-Patch0:		%{name}-obsoletes.patch
-Patch1:		%{name}-sequencer.patch
+# Source0-md5:	c886b7d99b4085c5d960e7435dcbd397
+Patch0:		%{name}-sequencer.patch
 URL:		https://pypi.org/project/distlib/
 %if %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
@@ -63,7 +62,6 @@ wysokopoziomowe API ułatwiające pakietowanie.
 %prep
 %setup -q -n distlib-%{version}
 %patch0 -p1
-%patch1 -p1
 
 %if "%{_host_cpu}" == "x32"
 # distlib.wheel doesn't distinguish x32 from x86_64
