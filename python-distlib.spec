@@ -23,7 +23,7 @@ BuildRequires:	glibc-localedb-all
 BuildRequires:	python-modules >= 1:2.7
 %endif
 %if %{with python3}
-BuildRequires:	python3-modules >= 1:3.2
+BuildRequires:	python3-modules >= 1:3.6
 %if %{with tests}
 BuildConflicts:	python3-astroid < 2.3.3-2
 BuildConflicts:	python3-pylint < 2.4.4-2
@@ -49,7 +49,7 @@ wysokopoziomowe API ułatwiające pakietowanie.
 Summary:	Distribution utilities
 Summary(pl.UTF-8):	Narzędzia do dystrybuowania
 Group:		Libraries/Python
-Requires:	python3-modules >= 1:3.2
+Requires:	python3-modules >= 1:3.6
 
 %description -n python3-distlib
 Low-level components of distutils2/packaging, augmented with
