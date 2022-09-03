@@ -7,13 +7,13 @@
 Summary:	Distribution utilities
 Summary(pl.UTF-8):	Narzędzia do dystrybuowania
 Name:		python-distlib
-Version:	0.3.4
-Release:	4
+Version:	0.3.6
+Release:	1
 License:	PSF v2
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/distlib/
-Source0:	https://files.pythonhosted.org/packages/source/d/distlib/distlib-%{version}.zip
-# Source0-md5:	c886b7d99b4085c5d960e7435dcbd397
+Source0:	https://files.pythonhosted.org/packages/source/d/distlib/distlib-%{version}.tar.gz
+# Source0-md5:	f60ba4e3f8e76c214d3d00b2227a16f7
 Patch0:		%{name}-sequencer.patch
 URL:		https://pypi.org/project/distlib/
 %if %(locale -a | grep -q '^C\.utf8$'; echo $?)
@@ -21,9 +21,11 @@ BuildRequires:	glibc-localedb-all
 %endif
 %if %{with python2}
 BuildRequires:	python-modules >= 1:2.7
+BuildRequires:	python-setuptools >= 1:42
 %endif
 %if %{with python3}
 BuildRequires:	python3-modules >= 1:3.6
+BuildRequires:	python3-setuptools >= 1:44
 %if %{with tests}
 BuildConflicts:	python3-astroid < 2.3.3-2
 BuildConflicts:	python3-pylint < 2.4.4-2
@@ -32,7 +34,6 @@ BuildConflicts:	python3-pylint < 2.4.4-2
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(macros) >= 1.714
 BuildRequires:	sed >= 4.0
-BuildRequires:	unzip
 Requires:	python-modules >= 1:2.7
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -67,6 +68,12 @@ wysokopoziomowe API ułatwiające pakietowanie.
 # distlib.wheel doesn't distinguish x32 from x86_64
 %{__sed} -i -e 's/test_mount_extensions/disabled&/' tests/test_wheel.py
 %endif
+
+# stub for setuptools
+cat >setup.py <<EOF
+from setuptools import setup
+setup()
+EOF
 
 %build
 %if %{with python2}
