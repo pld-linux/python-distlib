@@ -62,7 +62,7 @@ wysokopoziomowe API ułatwiające pakietowanie.
 
 %prep
 %setup -q -n distlib-%{version}
-%patch0 -p1
+%patch -P 0 -p1
 
 %if "%{_host_cpu}" == "x32"
 # distlib.wheel doesn't distinguish x32 from x86_64
