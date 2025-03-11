@@ -7,25 +7,29 @@
 Summary:	Distribution utilities
 Summary(pl.UTF-8):	Narzędzia do dystrybuowania
 Name:		python-distlib
-Version:	0.3.6
-Release:	2
+Version:	0.3.9
+Release:	1
 License:	PSF v2
 Group:		Libraries/Python
 #Source0Download: https://pypi.org/simple/distlib/
 Source0:	https://files.pythonhosted.org/packages/source/d/distlib/distlib-%{version}.tar.gz
-# Source0-md5:	f60ba4e3f8e76c214d3d00b2227a16f7
+# Source0-md5:	958df85785458fa326a07af4f9c1c328
 Patch0:		%{name}-sequencer.patch
 URL:		https://pypi.org/project/distlib/
 %if %(locale -a | grep -q '^C\.utf8$'; echo $?)
 BuildRequires:	glibc-localedb-all
 %endif
 %if %{with python2}
+BuildRequires:	pydoc
 BuildRequires:	python-modules >= 1:2.7
 BuildRequires:	python-setuptools >= 1:42
+BuildRequires:	python-test
 %endif
 %if %{with python3}
+BuildRequires:	pydoc3
 BuildRequires:	python3-modules >= 1:3.6
 BuildRequires:	python3-setuptools >= 1:44
+BuildRequires:	python3-test
 %if %{with tests}
 BuildConflicts:	python3-astroid < 2.3.3-2
 BuildConflicts:	python3-pylint < 2.4.4-2
